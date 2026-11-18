@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 语法检查注入的外壳脚本
+        run: |
+          node --check src/prologue.js
+          node --check src/epilogue.js
+      - name: 构建（需要上游脚本；没有则跳过）
+        run: |
+          if [ -f upstream/original-4.8.3.txt ]; then
+            python3 tools/build.py
+            node --check dist/*.user.js
+          else
+            echo "未提供 upstream/original-4.8.3.txt，跳过构建"
+          fi
+      - name: 引擎单元测试
+        run: node tests/test_engine.js
