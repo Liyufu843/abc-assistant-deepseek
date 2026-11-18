@@ -1,14 +1,6 @@
 MIT License
 
-Copyright (c) 2026 ABC-Assistant-DeepSeek contributors
-
-本许可证仅覆盖本仓库中由本项目作者编写的代码与文档
-（tools/、src/、tests/、docs/、README 等）。
-
-本仓库不包含上游脚本 "🐮ABC超星学习通｜智慧树网课助手" 的任何代码；
-上游脚本版权归其作者 oolikeABC 所有，许可证为 Proprietary。
-构建产物（dist/ 下的文件）由用户在本机自行生成，其法律地位取决于
-上游许可条款，不在本 MIT 许可的授权范围内。
+Copyright (c) 2026 abc-assistant-deepseek contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
