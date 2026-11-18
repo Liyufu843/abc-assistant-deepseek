@@ -12,17 +12,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: 语法检查注入的外壳脚本
-        run: |
-          node --check src/prologue.js
-          node --check src/epilogue.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 构建器语法检查
+        run: python -c "import py_compile; py_compile.compile('tools/build.py', doraise=True)"
+      - name: 外壳片段拼接检查
+        run: node tests/check_shell.js
       - name: 构建（需要上游脚本；没有则跳过）
         run: |
           if [ -f upstream/original-4.8.3.txt ]; then
-            python3 tools/build.py
+            python tools/build.py
             node --check dist/*.user.js
           else
-            echo "未提供 upstream/original-4.8.3.txt，跳过构建"
+            echo "未提供 upstream/original-4.8.3.txt，跳过构建与引擎单测"
           fi
-      - name: 引擎单元测试
+      - name: 引擎单元测试（有产物时）
         run: node tests/test_engine.js
