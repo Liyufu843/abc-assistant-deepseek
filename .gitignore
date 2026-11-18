@@ -1,0 +1,23 @@
+# 上游原脚本：不入库（版权归原作者）
+upstream/
+*.bak
+
+# 构建产物：不入库（属于上游代码的衍生再分发，风险由用户自担）
+dist/
+*.user.js
+
+# Python / Node
+__pycache__/
+*.pyc
+node_modules/
+package-lock.json
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 本地配置 / 密钥
+.env
+*.local
