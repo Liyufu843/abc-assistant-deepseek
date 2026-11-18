@@ -1,0 +1,55 @@
+name: Bug 反馈
+description: 面板不出现、答题不准、卡住等
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先确认：只装了本脚本（没有和原版同时启用），并且已经在“设置”里填了自己的模型 Key。
+        日志截图请截「日志」标签最后 10 行，那里面通常直接写着原因。
+  - type: input
+    id: env
+    attributes:
+      label: 环境
+      description: 浏览器 + 版本 / 脚本管理器 + 版本 / 脚本版本（面板标题栏能看到）
+      placeholder: Chrome 130 + Tampermonkey 5.3 + ABC-1.3.0
+    validations:
+      required: true
+  - type: input
+    id: site
+    attributes:
+      label: 站点与页面
+      description: 哪个平台、什么页面（视频 / 作业 / 考试），域名可以只写前缀
+      placeholder: chaoxing.com 的章节测验
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开某章节测验
+        2. 点“开始答题”
+        3. 日志停在 …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望 vs 实际
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: 日志 / 控制台
+      description: 「日志」标签最后 10 行；若面板没出现，请附 F12 Console 的红色报错
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 自查
+      options:
+        - label: 已确认只启用本脚本（未与原版共存）
+        - label: 已填写自己的 API Key（设置里“AI 密钥”）
+        - label: 已尝试“AI 调试日志”并看过 F12 控制台
